@@ -1,0 +1,26 @@
+{
+    "name": "uspdev/cadastros-auxiliares-client",
+    "description": "Laravel client for cadastros-auxiliares webservice endpoints",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": "^8.2",
+        "illuminate/cache": "^11.0|^12.0",
+        "illuminate/http": "^11.0|^12.0",
+        "illuminate/support": "^11.0|^12.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Uspdev\\CadastrosAuxiliaresClient\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Uspdev\\CadastrosAuxiliaresClient\\CadastrosAuxiliaresClientServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
