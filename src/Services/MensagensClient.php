@@ -58,7 +58,7 @@ class MensagensClient implements MensagensClientInterface
      */
     private function buildRequest(array $filters): array
     {
-        $endpoint = trim((string) $this->config->get('cadastros-auxiliares-client.mensagens.endpoint_url', ''));
+        $endpoint = $this->resolveEndpoint();
 
         if ($endpoint === '') {
             return ['', []];
@@ -82,6 +82,23 @@ class MensagensClient implements MensagensClientInterface
         $query = array_replace($defaultQuery, $endpointQuery, $filters);
 
         return [$baseEndpoint, $this->sanitizeQuery($query)];
+    }
+
+    private function resolveEndpoint(): string
+    {
+        $endpoint = trim((string) $this->config->get('cadastros-auxiliares-client.mensagens.endpoint_url', ''));
+
+        if ($endpoint !== '') {
+            return $endpoint;
+        }
+
+        $baseUrl = rtrim(trim((string) $this->config->get('cadastros-auxiliares-client.base_url', '')), '/');
+
+        if ($baseUrl === '') {
+            return '';
+        }
+
+        return $baseUrl . '/api/mensagens';
     }
 
     /**
