@@ -16,18 +16,6 @@ O client consome, por padrão, estes endpoints a partir de `CADASTROS_AUXILIARES
 - `GET /api/pos/programas`
 - `GET /api/pos/programas/{codcur}`
 
-## Instalação
-
-```bash
-composer require uspdev/cadastros-auxiliares-client
-```
-
-Publicar config (opcional):
-
-```bash
-php artisan vendor:publish --tag=cadastros-auxiliares-client-config
-```
-
 ## Configuração (`.env`)
 
 ```dotenv
