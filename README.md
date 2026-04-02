@@ -5,7 +5,7 @@ Cliente Laravel para consumo dos endpoints do `cadastros-auxiliares`.
 ## Objetivo
 
 Centralizar no backend dos sistemas locais:
-- requisições HTTP para mensagens (opcional) e programas;
+- requisições HTTP para mensagens (opcional), programas e cursos de graduação;
 - comportamento fail-silent (sem quebrar interface).
 
 ## Endpoints disponíveis no serviço
@@ -15,6 +15,8 @@ O client consome, por padrão, estes endpoints a partir de `CADASTROS_AUXILIARES
 - `GET /api/mensagens`
 - `GET /api/pos/programas`
 - `GET /api/pos/programas/{codcur}`
+- `GET /api/graduacao/cursos`
+- `GET /api/graduacao/cursos/{codcur}`
 
 ## Configuração (`.env`)
 
@@ -35,7 +37,7 @@ CADASTROS_AUXILIARES_MENSAGENS_REFRESH=30
 
 Observações:
 - a integração de mensagens é opcional (`CADASTROS_AUXILIARES_MENSAGENS_INTEGRACAO`);
-- o cliente de programas fica disponível por padrão após instalar a biblioteca (sem flag dedicada);
+- os clientes de programas e cursos de graduação ficam disponíveis por padrão após instalar a biblioteca (sem flag dedicada);
 - para casos especiais, ainda é possível sobrescrever endpoint por config (`mensagens.endpoint_url` e `programas.endpoint_url`).
 
 ## Uso básico - mensagens
@@ -65,6 +67,19 @@ $programa = app(ProgramasClientInterface::class)->obter(1001);
 Retornos:
 - `listar()`: `Collection` de programas (`id`, `codcur`, `nomcur`, `codslg`);
 - `obter($codcur)`: `array|null` com os dados do programa.
+
+## Uso básico - cursos de graduação
+
+```php
+use Uspdev\CadastrosAuxiliaresClient\Contracts\CursosGraduacaoClientInterface;
+
+$cursos = app(CursosGraduacaoClientInterface::class)->listar();
+$curso = app(CursosGraduacaoClientInterface::class)->obter(1234);
+```
+
+Retornos:
+- `listar()`: `Collection` de cursos (`id`, `codcur`, `nomcur`, `codset`, `nomset`, `nomabvset`);
+- `obter($codcur)`: `array|null` com os dados do curso.
 
 ## Passos para implementar em sistemas locais
 

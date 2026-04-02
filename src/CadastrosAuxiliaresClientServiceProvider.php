@@ -3,8 +3,10 @@
 namespace Uspdev\CadastrosAuxiliaresClient;
 
 use Illuminate\Support\ServiceProvider;
+use Uspdev\CadastrosAuxiliaresClient\Contracts\CursosGraduacaoClientInterface;
 use Uspdev\CadastrosAuxiliaresClient\Contracts\MensagensClientInterface;
 use Uspdev\CadastrosAuxiliaresClient\Contracts\ProgramasClientInterface;
+use Uspdev\CadastrosAuxiliaresClient\Services\CursosGraduacaoClient;
 use Uspdev\CadastrosAuxiliaresClient\Services\MensagensClient;
 use Uspdev\CadastrosAuxiliaresClient\Services\ProgramasClient;
 
@@ -19,6 +21,7 @@ class CadastrosAuxiliaresClientServiceProvider extends ServiceProvider
 
         $this->app->singleton(MensagensClientInterface::class, MensagensClient::class);
         $this->app->singleton(ProgramasClientInterface::class, ProgramasClient::class);
+        $this->app->singleton(CursosGraduacaoClientInterface::class, CursosGraduacaoClient::class);
     }
 
     public function boot(): void
